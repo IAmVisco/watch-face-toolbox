@@ -1,8 +1,9 @@
 {
-  "name": "watch-face-editor",
+  "name": "watch-face-toolbox",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
@@ -14,7 +15,41 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+      "jsx-a11y"
+    ],
+    "rules": {
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "indent": [
+        "warn",
+        2,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "semi": [
+        "warn",
+        "never"
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "arrow-spacing": [
+        "warn",
+        {
+          "before": true,
+          "after": true
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

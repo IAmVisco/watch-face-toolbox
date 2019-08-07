@@ -1,6 +1,5 @@
 import React from 'react'
-import '../styles/Canvas.scss'
-import bg from '../assets/test.png'
+import '../styles/Layer.scss'
 
 class Layer extends React.Component {
   ctx = undefined
@@ -82,7 +81,7 @@ class Layer extends React.Component {
     this.ctx = this.refs.canvas.getContext('2d')
     window.addEventListener('resize', this.updateCanvasOffset)
     this.updateCanvasOffset()
-    this.img.src = bg
+    this.img.src = this.props.image
     this.img.onload = () => {
       this.ctx.drawImage(this.img, this.state.imageX, this.state.imageY)
     }
@@ -93,13 +92,19 @@ class Layer extends React.Component {
   }
 
   render() {
+    const styles = {
+      zIndex: this.props.id,
+      pointerEvents: this.props.id === 1 ? 'none' : 'initial'
+    }
+
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
       <canvas
         ref="canvas"
         width={this.canvasWidth}
         height={this.canvasHeight}
-        className="m-auto shadow"
+        style={styles}
+        className={this.props.id === 1 ? 'shadow' : ''}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}

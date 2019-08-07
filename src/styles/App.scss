@@ -1,8 +1,17 @@
+.layers-container {
+  display: flex;
+  position: relative;
+}
+
 .row {
   height: calc(100vh - 56px);
   background: #e4e4e4;
 }
 
-.red {
-  background: red;
+.blue {
+  background: linear-gradient(30deg, #3f5ca8 0%, #5579d9 100%);
+}
+
+.pink {
+  background: linear-gradient(30deg, #ff5e9b 0%, #ffada5 100%);
 }

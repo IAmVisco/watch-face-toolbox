@@ -2,30 +2,48 @@ import React from 'react'
 import '../styles/Canvas.scss'
 import bg from '../assets/test.png'
 
-class Canvas extends React.Component {
+class Layer extends React.Component {
+  ctx = undefined
   canvasWidth = 500
   canvasHeight = 600
   img = new Image()
   state = {
+    imageX: 0,
+    imageY: 0,
     offsetX: 0,
     offsetY: 0,
+    hitPosX: 0,
+    hitPosY: 0,
     canvasMouseX: 0,
     canvasMouseY: 0,
     isDragging: false
   }
 
   updateCanvasMousePosition = (e, isDragging) => {
+    const canvasMouseX = parseInt(e.clientX - this.state.offsetX)
+    const canvasMouseY = parseInt(e.clientY - this.state.offsetY)
+    const hitPosX = canvasMouseX - this.state.imageX
+    const hitPosY = canvasMouseY - this.state.imageY
     this.setState({
-      canvasMouseX: parseInt(e.clientX - this.state.offsetX),
-      canvasMouseY: parseInt(e.clientY - this.state.offsetY),
+      canvasMouseX,
+      canvasMouseY,
+      hitPosX,
+      hitPosY,
       isDragging
     })
   }
 
+  mouseHit = ({ buttons, clientX, clientY }) => {
+    const { imageX, imageY, offsetX, offsetY } = this.state
+    return buttons === 1
+      && clientX >= imageX + offsetX && clientX <= imageX + this.img.width + offsetX
+      && clientY >= imageY + offsetY && clientY <= imageY + this.img.height + offsetY
+  }
+
   handleMouseDown = (e) => {
-    console.log(e.buttons)
-    if (!(e.buttons === 1))
+    if (!this.mouseHit(e))
       return
+    
     this.updateCanvasMousePosition(e, true)
   }
 
@@ -38,7 +56,7 @@ class Canvas extends React.Component {
   }
 
   handleMouseMove = (e) => {
-    if (!(e.buttons === 1))
+    if (!this.mouseHit(e))
       return
 
     this.setState({
@@ -47,8 +65,11 @@ class Canvas extends React.Component {
     })
 
     if (this.state.isDragging) {
-      this.state.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-      this.state.ctx.drawImage(this.img, this.state.canvasMouseX - this.img.width / 2, this.state.canvasMouseY - this.img.height / 2)
+      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
+      const imageX = this.state.canvasMouseX - this.state.hitPosX
+      const imageY = this.state.canvasMouseY - this.state.hitPosY
+      this.ctx.drawImage(this.img, imageX, imageY)
+      this.setState({ imageX, imageY })
     }
   }
 
@@ -61,14 +82,12 @@ class Canvas extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      ctx: this.refs.canvas.getContext('2d')
-    })
+    this.ctx = this.refs.canvas.getContext('2d')
     window.addEventListener('resize', this.updateCanvasOffset)
     this.updateCanvasOffset()
     this.img.src = bg
     this.img.onload = () => {
-      this.state.ctx.drawImage(this.img, 0, 0)
+      this.ctx.drawImage(this.img, this.state.imageX, this.state.imageY)
     }
   }
 
@@ -93,4 +112,4 @@ class Canvas extends React.Component {
   }
 }
 
-export default Canvas
+export default Layer

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import '../styles/App.scss'
-import Canvas from './Canvas'
+import Layer from './Layer'
 import Header from './Header'
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
           <Row>
             <Col xs="3" className="red"></Col>
             <Col className="d-flex">
-              <Canvas />
+              <Layer />
             </Col>
             <Col xs="3" className="red"></Col>
           </Row>

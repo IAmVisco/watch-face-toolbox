@@ -1,4 +1,17 @@
-div[class*="col"] {
-  height: 100px;
-  background-color: #eb0c0c;
+.canvas-container {
+  text-align: center;
+}
+
+.row {
+  height: calc(100vh - 56px);
+  background: #e4e4e4;
+}
+
+canvas {
+  //background-color: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 4px 9px rgba(0, 0, 0, 0.15);
+}
+
+.red {
+  background: red;
 }

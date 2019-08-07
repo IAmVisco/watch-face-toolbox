@@ -1,8 +1,9 @@
-import { ADD_LAYER } from '../actions'
+import { ADD_LAYER, UDPATE_COLOR } from '../actions'
 import clock from '../assets/test.png'
 import cake from '../assets/cake.jpg'
 
 const initialState = {
+  color: '#eb0c0c',
   layers: [
     {
       id: 2,
@@ -19,6 +20,12 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_LAYER: {
       return state
+    }
+    case UDPATE_COLOR: {
+      return {
+        ...state,
+        color: action.color
+      }
     }
     default: {
       return state

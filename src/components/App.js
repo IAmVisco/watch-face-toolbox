@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Col, Row } from 'react-bootstrap'
 import '../styles/App.scss'
 import Header from './Header'
+import ColorPalette from './ColorPalette'
 import LayerContainer from './LayerContainer'
 
 class App extends React.Component {
@@ -11,11 +12,13 @@ class App extends React.Component {
         <Header />
         <Container fluid>
           <Row>
-            <Col xs="3" className="blue"></Col>
-            <Col className="layers-container">
-              <LayerContainer />
+            <Col xs="3" className="blue">
+
             </Col>
-            <Col xs="3" className="pink"></Col>
+            <LayerContainer />
+            <Col xs="3" className="mt-3">
+              <ColorPalette />
+            </Col>
           </Row>
         </Container>
       </React.Fragment>

@@ -1,11 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Col } from 'react-bootstrap'
 import Layer from './Layer'
+import '../styles/Layer.scss'
 
 class LayerContainer extends React.Component {
   render() {
-    return this.props.layers.map((layer, index) =>
+    const layers = this.props.layers.map((layer, index) =>
       <Layer key={index} {...layer} />
+    )
+    return (
+      <Col className="layers-container">
+        {layers}
+      </Col>
     )
   }
 }

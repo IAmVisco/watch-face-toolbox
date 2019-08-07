@@ -1,4 +1,9 @@
-canvas {
+.layers-container {
+  display: flex;
+  position: relative;
+}
+
+.editor-canvas {
   position: absolute;
   margin: auto;
   left: 0;

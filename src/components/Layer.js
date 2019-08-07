@@ -4,7 +4,7 @@ import '../styles/Layer.scss'
 class Layer extends React.Component {
   ctx = undefined
   canvasWidth = 500
-  canvasHeight = 600
+  canvasHeight = 500
   img = new Image()
   state = {
     imageX: 0,
@@ -96,6 +96,8 @@ class Layer extends React.Component {
       zIndex: this.props.id,
       pointerEvents: this.props.id === 1 ? 'none' : 'initial'
     }
+    let canvasClass = 'editor-canvas '
+    canvasClass += this.props.id === 1 ? 'shadow ' : ''
 
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -104,7 +106,7 @@ class Layer extends React.Component {
         width={this.canvasWidth}
         height={this.canvasHeight}
         style={styles}
-        className={this.props.id === 1 ? 'shadow' : ''}
+        className={canvasClass}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}

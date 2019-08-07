@@ -12,23 +12,23 @@ class Layer extends React.Component {
     imageY: 0,
     offsetX: 0,
     offsetY: 0,
-    hitPosX: 0,
-    hitPosY: 0,
-    canvasMouseX: 0,
-    canvasMouseY: 0,
+    imageHitX: 0,
+    imageHitY: 0,
+    canvasHitX: 0,
+    canvasHitY: 0,
     isDragging: false
   }
 
   updateCanvasMousePosition = (e, isDragging) => {
-    const canvasMouseX = parseInt(e.clientX - this.state.offsetX)
-    const canvasMouseY = parseInt(e.clientY - this.state.offsetY)
-    const hitPosX = canvasMouseX - this.state.imageX
-    const hitPosY = canvasMouseY - this.state.imageY
+    const canvasHitX = parseInt(e.clientX - this.state.offsetX)
+    const canvasHitY = parseInt(e.clientY - this.state.offsetY)
+    const imageHitX = canvasHitX - this.state.imageX
+    const imageHitY = canvasHitY - this.state.imageY
     this.setState({
-      canvasMouseX,
-      canvasMouseY,
-      hitPosX,
-      hitPosY,
+      imageHitX,
+      imageHitY,
+      canvasHitX,
+      canvasHitY,
       isDragging
     })
   }
@@ -43,7 +43,7 @@ class Layer extends React.Component {
   handleMouseDown = (e) => {
     if (!this.mouseHit(e))
       return
-    
+
     this.updateCanvasMousePosition(e, true)
   }
 
@@ -60,14 +60,14 @@ class Layer extends React.Component {
       return
 
     this.setState({
-      canvasMouseX: parseInt(e.clientX - this.state.offsetX),
-      canvasMouseY: parseInt(e.clientY - this.state.offsetY),
+      canvasHitX: parseInt(e.clientX - this.state.offsetX),
+      canvasHitY: parseInt(e.clientY - this.state.offsetY),
     })
 
     if (this.state.isDragging) {
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight)
-      const imageX = this.state.canvasMouseX - this.state.hitPosX
-      const imageY = this.state.canvasMouseY - this.state.hitPosY
+      const imageX = this.state.canvasHitX - this.state.imageHitX
+      const imageY = this.state.canvasHitY - this.state.imageHitY
       this.ctx.drawImage(this.img, imageX, imageY)
       this.setState({ imageX, imageY })
     }

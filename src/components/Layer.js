@@ -56,9 +56,6 @@ class Layer extends React.Component {
   }
 
   handleMouseMove = (e) => {
-    if (!this.mouseHit(e))
-      return
-
     this.setState({
       canvasHitX: parseInt(e.clientX - this.state.offsetX),
       canvasHitY: parseInt(e.clientY - this.state.offsetY),

@@ -21,7 +21,12 @@ class LayerList extends React.Component {
         onClick={this.handleItemClick}
         className={this.props.activeLayer === layer.id ? 'active' : ''}
       >
-        <img src={layer.image} alt="layer preview" height="32" width="32" />Layer {layer.id}
+        <img
+          src={layer.image}
+          alt="layer thumbnail"
+          height="32"
+          width="32"
+          className="mr-1" />Layer {layer.id}
       </ListGroup.Item>
     )
 

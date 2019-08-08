@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Layer.scss'
 
-class Layer extends React.Component {
+class Layer extends React.PureComponent {
   ctx = undefined
   canvasWidth = 500
   canvasHeight = 500
@@ -92,12 +92,13 @@ class Layer extends React.Component {
   }
 
   render() {
+    const { id, activeLayer } = this.props
+    const canvasClass = id === '1' ? 'shadow ' : ''
+    const pointerEvents = id === activeLayer ? 'initial' : 'none'
     const styles = {
-      zIndex: this.props.id,
-      pointerEvents: this.props.id === this.props.activeLayer ? 'initial' : 'none'
+      zIndex: id,
+      pointerEvents
     }
-    let canvasClass = 'editor-canvas '
-    canvasClass += this.props.id === '1' ? 'shadow ' : ''
 
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
@@ -106,7 +107,7 @@ class Layer extends React.Component {
         width={this.canvasWidth}
         height={this.canvasHeight}
         style={styles}
-        className={canvasClass}
+        className={'editor-canvas ' + canvasClass}
         onMouseDown={this.handleMouseDown}
         onMouseUp={this.handleMouseUp}
         onMouseMove={this.handleMouseMove}

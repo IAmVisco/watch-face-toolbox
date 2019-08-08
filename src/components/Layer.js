@@ -19,8 +19,8 @@ class Layer extends React.Component {
   }
 
   updateCanvasMousePosition = (e, isDragging) => {
-    const canvasHitX = parseInt(e.clientX - this.state.offsetX)
-    const canvasHitY = parseInt(e.clientY - this.state.offsetY)
+    const canvasHitX = Math.floor(e.clientX - this.state.offsetX)
+    const canvasHitY = Math.floor(e.clientY - this.state.offsetY)
     const imageHitX = canvasHitX - this.state.imageX
     const imageHitY = canvasHitY - this.state.imageY
     this.setState({
@@ -56,8 +56,8 @@ class Layer extends React.Component {
 
   handleMouseMove = (e) => {
     this.setState({
-      canvasHitX: parseInt(e.clientX - this.state.offsetX),
-      canvasHitY: parseInt(e.clientY - this.state.offsetY),
+      canvasHitX: Math.floor(e.clientX - this.state.offsetX),
+      canvasHitY: Math.floor(e.clientY - this.state.offsetY),
     })
 
     if (this.state.isDragging) {
@@ -94,10 +94,10 @@ class Layer extends React.Component {
   render() {
     const styles = {
       zIndex: this.props.id,
-      pointerEvents: this.props.id === 1 ? 'none' : 'initial'
+      pointerEvents: this.props.id === this.props.activeLayer ? 'initial' : 'none'
     }
     let canvasClass = 'editor-canvas '
-    canvasClass += this.props.id === 1 ? 'shadow ' : ''
+    canvasClass += this.props.id === '1' ? 'shadow ' : ''
 
     return (
       // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events

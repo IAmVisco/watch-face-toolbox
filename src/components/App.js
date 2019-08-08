@@ -4,6 +4,7 @@ import '../styles/App.scss'
 import Header from './Header'
 import ColorPalette from './ColorPalette'
 import LayerContainer from './LayerContainer'
+import LayerList from './LayerList'
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
             <LayerContainer />
             <Col xs="3" className="mt-3">
               <ColorPalette />
+              <LayerList />
             </Col>
           </Row>
         </Container>

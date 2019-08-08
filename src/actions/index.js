@@ -1,2 +1,3 @@
 export const ADD_LAYER = 'ADD_LAYER'
 export const UDPATE_COLOR = 'UDPATE_COLOR'
+export const UPDATE_ACTIVE_LAYER = 'UPDATE_ACTIVE_LAYER'

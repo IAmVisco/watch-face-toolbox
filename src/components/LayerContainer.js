@@ -7,7 +7,7 @@ import '../styles/Layer.scss'
 class LayerContainer extends React.Component {
   render() {
     const layers = this.props.layers.map((layer, index) =>
-      <Layer key={index} {...layer} />
+      <Layer key={index} {...layer} activeLayer={this.props.activeLayer} />
     )
     return (
       <Col className="layers-container">
@@ -19,6 +19,7 @@ class LayerContainer extends React.Component {
 
 export default connect(
   state => ({
+    activeLayer: state.activeLayer,
     layers: state.layers
   })
 )(LayerContainer)

@@ -11,3 +11,7 @@
   top: 0;
   bottom: 0;
 }
+
+.list-group-item > img {
+  object-fit: contain;
+}

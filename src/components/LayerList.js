@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { ListGroup } from 'react-bootstrap'
+import '../styles/Layer.scss'
 import { UPDATE_ACTIVE_LAYER } from '../actions'
 
 class LayerList extends React.Component {
@@ -11,18 +12,17 @@ class LayerList extends React.Component {
     })
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
-    // TODO: Set default active
     const layersList = this.props.layers.map((layer, index) =>
       <ListGroup.Item
         action
         key={index}
         eventKey={layer.id}
-        onClick={this.handleItemClick}>Layer {layer.id}</ListGroup.Item>
+        onClick={this.handleItemClick}
+        className={this.props.activeLayer === layer.id ? 'active' : ''}
+      >
+        <img src={layer.image} alt="layer preview" height="32" width="32" />Layer {layer.id}
+      </ListGroup.Item>
     )
 
     return (

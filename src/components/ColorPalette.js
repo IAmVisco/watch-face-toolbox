@@ -3,12 +3,12 @@ import Pickr from '@simonwep/pickr'
 import { connect } from 'react-redux'
 import '@simonwep/pickr/dist/themes/monolith.min.css'
 import { UDPATE_COLOR } from '../actions'
+import '../styles/ColorPalette.scss'
 
 class ColorPalette extends React.Component {
   componentDidMount() {
     const pickr = Pickr.create({
       el: '.picker',
-      showAlways: true,
       theme: 'monolith',
       position: 'right-end',
       default: this.props.color,
@@ -30,7 +30,10 @@ class ColorPalette extends React.Component {
 
   render() {
     return (
-      <span className="picker" />
+      <div className="p-3 shadow">
+        <span className="palette-desc mr-1">Color picker </span>
+        <span className="picker" />
+      </div>
     )
   }
 }
